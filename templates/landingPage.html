@@ -12,14 +12,12 @@
 </head>
 
 <body>
-    {% import 'navbar.jinja' as navbar%}
-    {% import 'footer.jinja' as footer%}
-    {% import 'post.jinja' as postBox%}
-    {{navbar.navbar(values,urls)}}
+    {% import 'modules.jinja' as module%}
+    {{module.navbar(values,urls)}}
     {% for post in posts%}
-    {{postBox.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
+    {{module.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
     {%- endfor %}
-    {{footer.footer(socials,tools)}}
+    {{module.footer(socials,tools)}}
 </body>
 <script src="/static/index.js"></script>
 
