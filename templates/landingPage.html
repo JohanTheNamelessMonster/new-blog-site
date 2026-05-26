@@ -17,9 +17,10 @@
     {% import 'post.jinja' as postBox%}
     {{navbar.navbar(values,urls)}}
     {% for post in posts%}
-    {{postBox.postBox(post["Title"],post["Body"],post["createdAt"])}}
+    {{postBox.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
     {%- endfor %}
     {{footer.footer(socials,tools)}}
 </body>
+<script src="/static/index.js"></script>
 
 </html>

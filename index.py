@@ -30,7 +30,7 @@ def main():
 
 @app.errorhandler(404)
 def restore(error):
-    return redirect(url_for("main"))
+    return "<p>You are lost</p>"
 
 @app.route("/one/<name>")
 def one(name=None):
@@ -39,6 +39,10 @@ def one(name=None):
         return f"Hello Bruh"
     else:
         return f"Hello {escape(name)}"
+    
+@app.route("/page/<pageNumber>")
+def showPostInFull(pageNumber):
+    return pageNumber
 
 @app.route("/aboutMe")
 def infoPage():

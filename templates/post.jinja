@@ -1,5 +1,5 @@
-{% macro postBox(title,body,createdOn) %}
-<div class="grid grid-row-6 bg-fuchsia-400 content-center border-y-4 border-gray-950 max-h-[180px] w-screen overflow-hidden" id="post">
+{% macro postBox(title,body,createdOn,postID) %}
+<div class="post grid grid-row-6 bg-fuchsia-400 content-center border-y-4 border-gray-950 max-h-[180px] w-screen overflow-hidden hover:bg-fuchsia-300" id={{postID}}>
     <div class="text-center row-span-2 underline row-start-1 row-end-2">
         <p class="text-lg font-serif font-semibold">{{title}}</p>
     </div><br>
