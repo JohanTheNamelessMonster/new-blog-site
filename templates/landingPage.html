@@ -14,8 +14,11 @@
 <body>
     {% import 'navbar.jinja' as navbar%}
     {% import 'footer.jinja' as footer%}
+    {% import 'post.jinja' as postBox%}
     {{navbar.navbar(values,urls)}}
-    <p class="text-lg font-bold underline">Just some text</p>
+    {% for post in posts%}
+    {{postBox.postBox(post["Title"],post["Body"],post["createdAt"])}}
+    {%- endfor %}
     {{footer.footer(socials,tools)}}
 </body>
 
