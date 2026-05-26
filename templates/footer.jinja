@@ -1,0 +1,35 @@
+{%macro footer(socials,tools)%}
+<div class="fixed grid grid-cols-2 gap-y-2 bg-purple-800 divide-x-2 divide-solid divide-gray-950 bottom-0 w-screen overflow-hidden">
+    <div class="relative grid grid-rows-2 float-left divide-dashed divide-gray-950">
+        <div class="relative grid grid-cols-2 gap-x-8 content-center my-2 max-h-[60px]">
+            <div class="space-x-4">
+                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
+                <p>Github</p>
+            </div>
+            <div class="space-x-4">
+                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
+            </div>
+        </div>
+        <div class="relative grid grid-cols-2 gap-x-8 content-center my-2 max-h-[60px]">
+            <div class="space-x-4">
+                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
+            </div>
+            <div class="space-x-4">
+                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
+            </div>
+        </div>
+    </div>
+    <div class="relative grid grid-rows-5 min-w-1/2 right-0 max-h-[60px]">
+        <div class="relative content-center m-0 text-center">
+            <h1 class="m-0 text-3xl text-gray-50">Tools Used</h1>
+        </div>
+        <div class="relative content-center row-start-2 row-end-4 gap-3 h-24 overflow-auto text-center divide-y-{{tools|length}} divide-dashed divide-gray-950">
+            {% for i in range(tools|length)%}
+            <div>
+                <a href={{tools[i][0]}} class="text-gray-50">{{tools[i][1]}}</a>
+            </div>
+            {%- endfor%}
+        </div>
+    </div>
+</div>
+{%- endmacro%}

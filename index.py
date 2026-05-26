@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.get("/")
 def main():
-    return render_template('landingpage.html',values=["About Me","Contact","Posts"],urls=["https://en.wikipedia.org/wiki/Alexander_the_Great",url_for("main"),url_for("main")])
+    return render_template('landingpage.html',values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]])
 
 @app.errorhandler(404)
 def restore(error):
@@ -24,3 +24,7 @@ def one(name=None):
         return f"Hello Bruh"
     else:
         return f"Hello {escape(name)}"
+
+@app.route("/aboutMe")
+def infoPage():
+    return render_template('infoPage.html',values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")])
