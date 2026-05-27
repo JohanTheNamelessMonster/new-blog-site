@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 import datetime as dt
 from customModules.sort import sortJSON
+from bson.objectid import ObjectId
 
 load_dotenv()
 client = MongoClient(os.getenv("URI"))
@@ -42,7 +43,16 @@ def one(name=None):
     
 @app.route("/page/<pageNumber>")
 def showPostInFull(pageNumber):
-    return pageNumber
+    db = client[os.getenv("DB")]
+    collection = db[os.getenv("COLLECTION")]
+    print(pageNumber)
+    if collection.count_documents({"_id" : ObjectId(pageNumber)}) > 0:
+        res = collection.find_one({"_id":ObjectId(pageNumber)})
+        print(res)
+        return render_template("postPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res)
+    else:
+        return "Nothing to see here"
+
 
 @app.route("/aboutMe")
 def infoPage():
