@@ -12,7 +12,7 @@ from bson.objectid import ObjectId
 load_dotenv()
 client = MongoClient(os.getenv("URI"))
 
-MathJAXScript = '<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>'
+MathJAXScript = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js'
 
 env = Environment(
     loader=FileSystemLoader('templates'),
@@ -28,12 +28,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def main():
     db = client[os.getenv("DB")]
     collection = db[os.getenv("COLLECTION")]
+    posts = collection.find({"Page":"Home"})
+    posts = sortJSON(posts)
 
-    if collection.count_documents({"Page":"Home"}) > 1:
-        posts = collection.find({"Page":"Home"})
-        posts = sortJSON(posts)
-
-    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
+    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
 
 @app.errorhandler(404)
 def restore(error):
@@ -46,7 +44,7 @@ def notesPage():
     posts = collection.find({"Page":"Notes"})
     posts = sortJSON(posts)
 
-    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
+    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
 
 @app.route("/page/<pageNumber>")
 def showPostInFull(pageNumber):
@@ -55,11 +53,10 @@ def showPostInFull(pageNumber):
     collection = db[os.getenv("COLLECTION")]
     if collection.count_documents({"_id" : ObjectId(pageNumber)}) > 0:
         res = collection.find_one({"_id":ObjectId(pageNumber)})
-        print("Unsplit \n")
-        print(res["Body"])
-        print("split")
-        print(res["Body"].split("|"))
-        return render_template("postPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"))
+        if res["Page"] == "Notes":
+            return render_template("postPage.html",values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"),mJAXScript=MathJAXScript)
+        else:
+            return render_template("postPage.html",values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"))
     else:
         return "Nothing to see here"
 
@@ -104,8 +101,8 @@ def adminPage():
         else:
             return "Invalid Password"
     else:
-        return render_template("adminPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]])
+        return render_template("adminPage.html",values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]])
 
 @app.route("/aboutMe")
 def infoPage():
-    return render_template('infoPage.html',values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")])
+    return render_template('infoPage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")])
