@@ -22,8 +22,10 @@
             <p class="text-xs text-white font-mono">{{data["createdAt"]}}</p><br>
             <p class="text-xs text-white font-mono">{{"Characters: " + (data["Body"]|length)|string}}</p>
         </div>
-        <div class="border-2 border-gray-100 text-left row-start-3 row-end-6 w-full">
-            <p class="text-lg text-white font-serif">{{data["Body"]}}</p>
+        <div class="border-2 border-gray-100 text-left max-h-[350px] row-start-3 row-end-6 w-full overflow-y-auto">
+            {% for para in paragraphs %}
+            <p class="text-lg text-white font-serif">{{para}}</p><br><br>
+            {%- endfor %}
         </div>
     </div>
 

@@ -1,4 +1,5 @@
 from flask import Flask,request,redirect,url_for,render_template
+from flask_cors import CORS,cross_origin
 from markupsafe import escape
 from jinja2 import Environment,FileSystemLoader,select_autoescape
 from pymongo import MongoClient
@@ -11,6 +12,8 @@ from bson.objectid import ObjectId
 load_dotenv()
 client = MongoClient(os.getenv("URI"))
 
+MathJAXScript = '<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>'
+
 env = Environment(
     loader=FileSystemLoader('templates'),
     autoescape=select_autoescape()
@@ -18,41 +21,90 @@ env = Environment(
 
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 @app.get("/")
 def main():
     db = client[os.getenv("DB")]
     collection = db[os.getenv("COLLECTION")]
 
-    if collection.count_documents({}) > 1:
-        posts = collection.find()
+    if collection.count_documents({"Page":"Home"}) > 1:
+        posts = collection.find({"Page":"Home"})
         posts = sortJSON(posts)
 
-    return render_template('landingpage.html',values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
+    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
 
 @app.errorhandler(404)
 def restore(error):
     return "<p>You are lost</p>"
 
-@app.route("/one/<name>")
-def one(name=None):
-    name = request.args.get("name", name)
-    if not name:
-        return f"Hello Bruh"
-    else:
-        return f"Hello {escape(name)}"
-    
-@app.route("/page/<pageNumber>")
-def showPostInFull(pageNumber):
+@app.route("/notes")
+def notesPage():
     db = client[os.getenv("DB")]
     collection = db[os.getenv("COLLECTION")]
-    print(pageNumber)
+    posts = collection.find({"Page":"Notes"})
+    posts = sortJSON(posts)
+
+    return render_template('landingpage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts)
+
+@app.route("/page/<pageNumber>")
+def showPostInFull(pageNumber):
+    print("A post has been accessed")
+    db = client[os.getenv("DB")]
+    collection = db[os.getenv("COLLECTION")]
     if collection.count_documents({"_id" : ObjectId(pageNumber)}) > 0:
         res = collection.find_one({"_id":ObjectId(pageNumber)})
-        print(res)
-        return render_template("postPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res)
+        print("Unsplit \n")
+        print(res["Body"])
+        print("split")
+        print(res["Body"].split("|"))
+        return render_template("postPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"))
     else:
         return "Nothing to see here"
 
+@app.route("/admin/secretPage",methods=["POST","GET"])
+@cross_origin()
+def adminPage():
+    if request.method == 'POST':
+        print("A new post has been requested")
+        jsonBody = request.get_json()
+        if jsonBody["data"]["password"] == os.getenv("HASHED_PASSWORD"):
+            db = client[os.getenv("DB")]
+            collection = db[os.getenv("COLLECTION")]
+            try:
+                if jsonBody["data"]["command"] == "CREATE":
+                    x = collection.insert_one({
+                    "Title":jsonBody["data"]["title"],
+                    "Body":jsonBody["data"]["body"],
+                    "createdAt":dt.datetime.now().isoformat(),
+                    "Page":jsonBody["data"]["page"]
+                    })
+
+                    print("New Post Made")
+                    return redirect(f"/page/{x.inserted_id}")
+                elif jsonBody["data"]["command"] == "UPDATE":
+                    x = collection.find_one_and_update({"_id": ObjectId(jsonBody["data"]["oid"])},{
+                        "$set":{
+                        "Title":jsonBody["data"]["title"],
+                        "Body":jsonBody["data"]["body"],
+                        "Page":jsonBody["data"]["page"]
+                        }})
+                    target = x["_id"]
+                    print(f"Post {target} has been updated")
+                    return redirect(f"/page/{target}")
+                elif jsonBody["data"]["command"] == "DELETE":
+                    x = collection.delete_one({"_id":ObjectId(jsonBody["data"]["oid"])})
+                    print("A post has been deleted")
+                    return redirect("/")
+                else:
+                    return "No command received!"
+            except Exception as e:
+                return f"New error caught: {e.message}"
+        else:
+            return "Invalid Password"
+    else:
+        return render_template("adminPage.html",values=["About Me","Contact","Posts"],urls=[url_for('infoPage'),url_for("main"),url_for("main")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]])
 
 @app.route("/aboutMe")
 def infoPage():

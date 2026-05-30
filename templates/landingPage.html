@@ -11,12 +11,16 @@
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
 </head>
 
-<body>
+<body class="bg-white h-screen w-screen">
     {% import 'modules.jinja' as module%}
     {{module.navbar(values,urls)}}
-    {% for post in posts%}
-    {{module.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
-    {%- endfor %}
+
+    <div class="border-2 border-indigo-500 overflow-auto max-height-[500px] overflow-x-hidden">
+        {% for post in posts%}
+        {{module.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
+        {%- endfor %}
+    </div>
+
     {{module.footer(socials,tools)}}
 </body>
 <script src="/static/index.js"></script>
