@@ -1,21 +1,14 @@
 {%macro footer(socials,tools)%}
 <div class="fixed grid grid-cols-2 gap-y-2 bg-purple-800 divide-x-2 divide-solid divide-gray-950 bottom-0 w-screen h-full max-h-[125px]">
-    <div class="relative grid grid-rows-2 float-left divide-dashed divide-gray-950">
-        <div class="relative grid grid-cols-2 gap-x-8 content-center my-2 max-h-[60px]">
-            <div class="space-x-4">
-                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
-                <p>Github</p>
+    <div class="relative grid grid-rows-1 float-left divide-dashed divide-gray-950">
+        <div class="relative grid grid-cols-2 gap-x-8 justify-center my-2 h-full">
+            <div class="flex items-center space-x-4">
+                <a class="float-left relative rounded" href={{socials[0]}}><i class="fa-brands fa-github fa-2xl"></i></a>
+                <a class="text-lg font-serif" href={{socials[0]}}>Github</a>
             </div>
-            <div class="space-x-4">
-                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
-            </div>
-        </div>
-        <div class="relative grid grid-cols-2 gap-x-8 content-center my-2 max-h-[60px]">
-            <div class="space-x-4">
-                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
-            </div>
-            <div class="space-x-4">
-                <a class="float-left relative rounded size-8" href={{socials[0]}}><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/></a>
+            <div class="flex items-center space-x-4">
+                <a class="float-left relative rounded size-8 cursor-pointer" id="discord_tag"><i class="fa-brands fa-discord fa-2xl"></i></a>
+                <p class="text-lg font-serif cursor-pointer">My Discord Username</p>
             </div>
         </div>
     </div>
@@ -80,7 +73,7 @@
 {%- endmacro%}
 
 {% macro postBox(title,body,createdOn,postID) %}
-<div class="post grid grid-row-6 bg-fuchsia-400 content-center border-y-4 border-gray-950 max-h-[180px] w-screen overflow-hidden hover:bg-fuchsia-300" id={{postID}}>
+<div class="post grid grid-row-6 bg-fuchsia-400 content-center border-y-4 border-gray-950 max-h-[180px] w-screen overflow-hidden hover:bg-fuchsia-300 px-4 mx-16 rounded-xl cursor-pointer" id={{postID}}>
     <div class="text-center row-span-2 underline row-start-1 row-end-2">
         <p class="text-lg font-serif font-semibold">{{title}}</p>
     </div><br>

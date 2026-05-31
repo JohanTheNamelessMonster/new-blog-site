@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
+    <script src={{iconKit}} crossorigin="anonymous"></script>
     <title>GNair - About Me</title>
 </head>
 
@@ -14,10 +15,9 @@
     {% import 'modules.jinja' as module %}
     {{module.navbar(values,urls)}}
 
-    <div
-        class="relative grid grid-rows-10 content-center border-b-4 border-dashed border-violet-700 h-screen overflow-x-hidden">
+    <div class="relative grid grid-rows-10 content-center h-screen overflow-x-hidden">
 
-        <div class="row-start-1 row-end-2">
+        <div class="row-start-1 row-end-3 border-b-4 border-dashed border-violet-700 h-full">
             <h1 class="text-indigo-500 font-[Cursive] text-6xl text-center pt-8 font-bold">I'm Goutham Nair
             </h1>
         </div>
@@ -34,7 +34,7 @@
         <div class="flex row-start-5 row-end-8 justify-center items-center">
             <form action="/static/CV_Goutham_Nair.pdf" method="get">
                 <button
-                    class="rounded-full bg-cyan-800 border-2 border-solid border-purple-400 text-center text-indigo-300 hover:bg-indigo-300 hover:text-cyan-800"
+                    class="rounded-full bg-gray-600 border-4 border-solid border-purple-400 text-center text-indigo-300 hover:bg-black hover:text-white hover:border-purple-800 w-75 h-25"
                     type="submit">Download my CV and 15 viruses alongside it!!!</button>
             </form>
         </div>
