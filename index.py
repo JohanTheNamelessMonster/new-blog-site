@@ -1,10 +1,13 @@
 from flask import Flask,request,redirect,url_for,render_template
+import requests
 from flask_cors import CORS,cross_origin
 from markupsafe import escape
 from jinja2 import Environment,FileSystemLoader,select_autoescape
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import timeit
+import json
 import datetime as dt
 from customModules.sort import sortJSON
 from bson.objectid import ObjectId
@@ -24,7 +27,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.get("/")
+@app.route("/")
 def main():
     db = client[os.getenv("DB")]
     collection = db[os.getenv("COLLECTION")]
@@ -105,4 +108,4 @@ def adminPage():
 
 @app.route("/aboutMe")
 def infoPage():
-    return render_template('infoPage.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")])
+    return render_template('aboutMe.html',values=["About Me","Contact","Notes"],urls=[url_for('infoPage'),url_for("main"),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]])
