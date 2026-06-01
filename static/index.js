@@ -4,7 +4,9 @@ document.querySelectorAll(".post").forEach((post) => {
     })
 })
 
-document.querySelector("#discord_tag").addEventListener("click", () => {
-    navigator.clipboard.write("therealshaqoatmeal")
-    alert("Username has been copied to clipboard!!")
+document.querySelectorAll("#discord_tag").forEach(e => {
+    e.addEventListener("click", () => {
+        navigator.clipboard.write("therealshaqoatmeal")
+        alert("Username has been copied to clipboard!!")
+    })
 })
