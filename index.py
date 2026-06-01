@@ -113,8 +113,3 @@ def adminPage():
 def infoPage():
     print("About me page was accessed")
     return render_template('aboutMe.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],iconKit=os.getenv("ICON_KIT"))
-
-
-if __name__ == "__main__":
-    app.debug = True
-    app.run()
