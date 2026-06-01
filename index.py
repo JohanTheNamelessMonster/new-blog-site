@@ -22,7 +22,7 @@ env = Environment(
     autoescape=select_autoescape()
 )
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
