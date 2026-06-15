@@ -6,3 +6,9 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+#name-title {
+    background: -webkit-linear-gradient(#7F00FF, #E100FF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
