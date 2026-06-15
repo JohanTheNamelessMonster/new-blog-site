@@ -1,0 +1,8 @@
+#scrollRegion::-webkit-scrollbar {
+    display: none;
+}
+
+#scrollRegion {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

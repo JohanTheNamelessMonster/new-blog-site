@@ -33,8 +33,12 @@ def main():
     collection = db[os.getenv("COLLECTION")]
     posts = collection.find({"Page":"Home"})
     posts = sortJSON(posts)
+    dates = []
+    for post in posts:
+        timeStamp = post["createdAt"].split("T")
+        dates.append(timeStamp)
 
-    return render_template('landingPage.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts,iconKit=os.getenv("ICON_KIT"))
+    return render_template('landingPage.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts,dates=dates,iconKit=os.getenv("ICON_KIT"))
 
 @app.errorhandler(404)
 def restore(error):

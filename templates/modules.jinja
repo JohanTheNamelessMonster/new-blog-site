@@ -1,25 +1,25 @@
 {%macro footer(socials,tools)%}
-<div class="fixed grid grid-cols-2 gap-y-2 bg-purple-800 divide-x-2 divide-solid divide-gray-950 bottom-0 w-screen h-full max-h-[125px]">
+<div class="fixed grid grid-cols-2 gap-y-2 bg-linear-to-r from-sky-400 via-indigo-600 to-purple-600 divide-x-2 divide-solid divide-gray-950 bottom-0 w-screen h-full max-h-[125px]">
     <div class="relative grid grid-rows-1 float-left divide-dashed divide-gray-950">
         <div class="relative grid grid-cols-2 gap-x-8 justify-center my-2 h-full">
             <div class="flex items-center space-x-4">
                 <a class="float-left relative rounded" href={{socials[0]}}><i class="fa-brands fa-github fa-2xl"></i></a>
                 <a class="text-lg font-serif" href={{socials[0]}}>Github</a>
             </div>
-            <div class="flex items-center space-x-4>
-                <a class="float-left relative rounded size-8 cursor-pointer" id="discord_tag"><i class="fa-brands fa-discord fa-2xl"></i></a>
-                <p class="text-lg font-serif cursor-pointer" id="discord_tag">My Discord Username</p>
+            <div class="flex items-center space-x-4">
+                <a class="relative rounded size-8 mr-4 cursor-pointer" id="discord_tag"><i class="fa-brands fa-discord fa-2xl"></i></a>
+                <p class="text-lg font-serif mr-4 cursor-pointer" id="discord_tag">Discord</p>
             </div>
         </div>
     </div>
     <div class="relative grid grid-rows-5 min-w-1/2 right-0 max-h-[60px]">
-        <div class="relative content-center m-0 text-center">
-            <h1 class="m-0 text-3xl text-gray-50">Tools Used</h1>
+        <div class="relative row-start-1 row-end-2 content-center text-center">
+            <h1 class="text-3xl mb-4 text-gray-50 font-[Serif]">Tools Used</h1>
         </div>
         <div class="relative content-center row-start-2 row-end-4 gap-3 h-24 overflow-auto text-center divide-y-{{tools|length}} divide-dashed divide-gray-950">
             {% for i in range(tools|length)%}
             <div>
-                <a href={{tools[i][0]}} class="text-gray-50">{{tools[i][1]}}</a>
+                <a href={{tools[i][0]}} class="text-gray-50 font-[Serif]">{{tools[i][1]}}</a>
             </div>
             {%- endfor%}
         </div>
@@ -28,7 +28,7 @@
 {%- endmacro%}
 
 {% macro navbar(values,urls)%}
-    <nav class="sticky bg-purple-800 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 w-screen">
+    <nav class="sticky bg-linear-to-r from-sky-400 via-indigo-600 to-purple-600 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 w-screen mb-4">
     <div class="max-w-7xl">
         <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -45,8 +45,8 @@
             </button>
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div class="flex shrink-0 items-center">
-                <a href="/" class="font-bold text-white">Goutham Nair</a>
+            <div class="flex shrink-0 items-center ml-4">
+                <a href="/" class="font-bold text-white hover:bg-black/5 px-2 py-2 rounded-md">Goutham Nair</a>
             </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -54,7 +54,7 @@
             <div class="flex space-x-4">
                 <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                 {% for i in range(values|length)%}
-                    <a href={{urls[i]}} aria-current="page" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">{{values[i]}}</a>
+                    <a href={{urls[i]}} aria-current="page" class=" right-0 rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-black/5 hover:text-white">{{values[i]}}</a>
                 {%- endfor%}
             </div>
             </div>
@@ -72,13 +72,13 @@
     </nav>
 {%- endmacro%}
 
-{% macro postBox(title,body,createdOn,postID) %}
-<div class="post grid grid-row-6 bg-fuchsia-400 content-center border-y-4 border-gray-950 max-h-[180px] w-screen overflow-hidden hover:bg-fuchsia-300 px-4 mx-16 rounded-xl cursor-pointer" id={{postID}}>
+{% macro postBox(title,body,createdOn,createdAt,postID) %}
+<div class="post grid grid-row-6 bg-linear-to-r from-sky-500 to-purple-800 transition delay-150 duration-750 hover:from-amber-500 hover:to-red-500 content-center border-y-4 border-gray-950 max-h-[180px] max-w-screen sm:min-w-[100px] lg:min-w-[1250px] overflow-hidden px-4 mx-16 rounded-xl cursor-pointer hover:scale-110 hover:shadow-yellow-400" id={{postID}}>
     <div class="text-center row-span-2 underline row-start-1 row-end-2">
         <p class="text-lg font-serif font-semibold">{{title}}</p>
     </div><br>
     <div class="text-left row-start-2">
-        <p class="text-3xs font-[cursive]">{{createdOn}}</p>
+        <p class="text-3xs font-[cursive]">Created On {{createdOn}} at {{createdAt}}</p>
     </div>
     <div class="text-left row-span-3 row-start-3 row-end-6">
         {% if body|length <= 15%}

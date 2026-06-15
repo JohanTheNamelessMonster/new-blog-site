@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
@@ -11,31 +12,39 @@
     <title>GNair - About Me</title>
 </head>
 
-<body class="bg-black h-screen overflow-x-hidden">
+<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen overflow-x-hidden">
     {% import 'modules.jinja' as module %}
     {{module.navbar(values,urls)}}
 
-    <div class="relative grid grid-rows-10 content-center h-screen overflow-x-hidden">
+    <div class="relative lg:max-h-[540px] sm:max-h-[250px] grid overflow-x-hidden overflow-y-auto" id="scrollRegion">
 
-        <div class="row-start-1 row-end-3 border-b-4 border-dashed border-violet-700 h-full">
-            <h1 class="text-indigo-500 font-[Cursive] text-6xl text-center pt-8 font-bold">I'm Goutham Nair
-            </h1>
+        <div class="relative row-span-2 border-b-4 border-dashed border-violet-700">
+            <h1 class="text-white font-[Serif] text-8xl lg:text-center pt-4 font-bold sm:text-left">Goutham</h1>
+            <br>
+            <h1 class="text-white font-[Serif] text-8xl text-right pt-2 pr-128 font-bold">Nair</h1>
         </div>
 
-        <div class="row-start-3 row-end-5 py-16">
-            <p class="text-white text-md text-center px-4">Hello traveller!! You have crawled far enough along the world
+        <div class="relative row-span-2 pt-16 h-full">
+            <p class="text-white text-md lg:text-center sm:text-left pr-4 wrap-break-word">Hello traveller!! You have
+                crawled far enough
+                along the world
                 wide web to end in the cold,dark,desolate and remote corner of my website.</p><br>
-            <p class="text-white text-md text-center px-4">As you may clearly have observed, I have a critical and clear
+            <p class="text-white text-md lg:text-center sm:text-left text-pretty pr-4 wrap-break-word">As you may
+                clearly have
+                observed, I have a
+                critical and clear
                 disdain for UI. I <em>DO NOT</em> like designing my UI. I have used tailwind css to do most of that
                 heavy lifting for me. If something fascinates you, then stick around. Credit me if you use any materials
                 on this site. Remember boys and girls <em>DO NOT PLAGARISE!!</em></p><br>
         </div>
 
-        <div class="flex row-start-5 row-end-8 justify-center items-center">
+        <div class="flex sticky row-span-2 justify-center items-center">
             <form action="/static/CV_Goutham_Nair.pdf" method="get">
                 <button
-                    class="rounded-full bg-gray-600 border-4 border-solid border-purple-400 text-center text-indigo-300 hover:bg-black hover:text-white hover:border-purple-800 w-75 h-25"
-                    type="submit">Download my CV and 15 viruses alongside it!!!</button>
+                    class="mb-8 rounded-xl bg-linear-to-r from-sky-600 to-violet-800 transition delay-150 duration-750 hover:from-amber-500 hover:to-red-500 cursor-pointer w-75 h-25"
+                    type="submit">
+                    <p class="text-white text-2xl font-[Serif]">My CV</p>
+                </button>
             </form>
         </div>
 

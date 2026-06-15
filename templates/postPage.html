@@ -12,11 +12,11 @@
     <script src={{iconKit}} crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 content-center">
     {% import 'modules.jinja' as modules %}
     {{modules.navbar(values,urls)}}
 
-    <div class="grid grid-rows-10 h-full bg-gray-950 content-center w-screen">
+    <div class="grid grid-rows-10 h-full w-screen">
         <div class="border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-full">
             <h1 class="text-3xl text-white font-serif font-semibold">{{data["Title"]}}</h1>
         </div>

@@ -12,13 +12,13 @@
     <script src={{iconKit}} crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-black h-screen w-screen">
+<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen w-screen">
     {% import 'modules.jinja' as module%}
     {{module.navbar(values,urls)}}
 
-    <div class="grid justify-center overflow-auto max-height-[500px] overflow-x-hidden">
-        {% for post in posts%}
-        {{module.postBox(post["Title"],post["Body"],post["createdAt"],post["_id"])}}
+    <div class="grid justify-center overflow-y-auto sm:max-h-[250px] lg:max-h-[525px] overflow-x-hidden">
+        {% for i in range(posts|length)%}
+        {{module.postBox(posts[i]["Title"],posts[i]["Body"],dates[i][0],dates[i][1],posts[i]["_id"])}}
         {%- endfor %}
     </div>
 
