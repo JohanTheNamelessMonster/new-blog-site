@@ -1,5 +1,4 @@
 from flask import Flask,request,redirect,url_for,render_template
-import requests
 from flask_cors import CORS,cross_origin
 from markupsafe import escape
 from jinja2 import Environment,FileSystemLoader,select_autoescape
