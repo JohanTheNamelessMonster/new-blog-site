@@ -2,13 +2,38 @@
     display: none;
 }
 
-#scrollRegion {
+.scrollRegion {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-#name-title {
+/* #name-title {
     background: -webkit-linear-gradient(#7F00FF, #E100FF);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+} */
+
+#backgroundVideo,
+#backgroundImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.fadeUp {
+    animation: fadeInUp ease 3s;
+    animation-iteration-count: 1;
+    /* animation-fill-mode: forwards; */
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

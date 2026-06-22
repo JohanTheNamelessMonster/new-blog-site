@@ -14,7 +14,7 @@
 
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 content-center">
     {% import 'modules.jinja' as modules %}
-    {{modules.navbar(values,urls)}}
+    {{modules.navbar()}}
 
     <div class="grid grid-rows-10 h-full w-screen">
         <div class="border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-full">
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    {{modules.footer(socials,tools)}}
 </body>
+<script src="/static/styles.js"></script>
 
 </html>

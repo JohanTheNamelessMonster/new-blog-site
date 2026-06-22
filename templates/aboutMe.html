@@ -6,54 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
     <script src={{iconKit}} crossorigin="anonymous"></script>
     <title>GNair - About Me</title>
 </head>
 
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen overflow-x-hidden">
     {% import 'modules.jinja' as module %}
-    {{module.navbar(values,urls)}}
 
-    <div class="relative lg:max-h-[540px] sm:max-h-[250px] grid overflow-x-hidden overflow-y-auto" id="scrollRegion">
+    <img src="/static/moon.jpg" id="backgroundImage">
+    <div id="screen" class="scrollRegion">
+        {{module.navbar()}} <br>
+        <div>
+            <h1 id="name">Goutham</h1><br>
+            <h1 id="name" class="lg:pl-32 sm:pl-0">Nair</h1>
+        </div> <br>
 
-        <div class="relative row-span-2 border-b-4 border-dashed border-violet-700">
-            <h1 class="text-white font-[Serif] text-8xl lg:text-center pt-4 font-bold sm:text-left" id="name-title">
-                Goutham</h1>
-            <br>
-            <h1 class="text-white font-[Serif] text-8xl text-right pt-2 pr-128 font-bold" id="name-title">Nair</h1>
+        <div id="infoRegion">
+            <div id="infoBox">
+                <h1 id="infoTitle">General Info</h1><br>
+                <p id="infoText">Hello traveller!! You have crawled far enough along the world wide web to end in
+                    the cold,dark,desolate and remote corner of my website.</p>
+                <form action="/static/CV_Goutham_Nair.pdf">
+                    <button id="infoButton">
+                        <h1 id="infoTitle">View my CV</h1>
+                    </button>
+                </form>
+            </div>
         </div>
-
-        <div class="relative row-span-2 pt-16 h-full">
-            <p class="text-white text-md lg:text-center sm:text-left pr-4 wrap-break-word">Hello traveller!! You have
-                crawled far enough
-                along the world
-                wide web to end in the cold,dark,desolate and remote corner of my website.</p><br>
-            <p class="text-white text-md lg:text-center sm:text-left text-pretty pr-4 wrap-break-word">As you may
-                clearly have
-                observed, I have a
-                critical and clear
-                disdain for UI. I <em>DO NOT</em> like designing my UI. I have used tailwind css to do most of that
-                heavy lifting for me. If something fascinates you, then stick around. Credit me if you use any materials
-                on this site. Remember boys and girls <em>DO NOT PLAGARISE!!</em></p><br>
-        </div>
-
-        <div class="flex sticky row-span-2 justify-center items-center">
-            <form action="/static/CV_Goutham_Nair.pdf" method="get">
-                <button
-                    class="mb-8 rounded-xl bg-linear-to-r from-[#E100FF] to-[#7F00FF] transition delay-150 duration-750 hover:from-amber-500 hover:to-red-500 cursor-pointer w-75 h-25"
-                    type="submit">
-                    <p class="text-white text-2xl font-[Serif]">My CV</p>
-                </button>
-            </form>
-        </div>
-
 
     </div>
-
-
-    {{module.footer(socials,tools)}}
+    <div id="menuList">
+        {{module.pagesMenu(values,urls)}}
+    </div>
 </body>
+
+<script src="/static/styles.js"></script>
+<script src="/static/index.js"></script>
+
 
 </html>
