@@ -17,7 +17,7 @@ const stylesExtract = (target, styleList, condition) => {
 }
 
 document.querySelector("#menuButtonBox").addEventListener("click", () => {
-    stylesInject("#screen", ["blur-lg", "disabled-screen"])
+    stylesInject("#screen", ["blur-lg", "disabledScreen"])
     stylesExtract("#menuList", ["hidden"])
     stylesExtract("#titleBox", ["w-1/2"])
     stylesInject("#titleBox", ["w-full"])
@@ -26,7 +26,7 @@ document.querySelector("#menuButtonBox").addEventListener("click", () => {
 })
 
 document.querySelector("#menuCollapseButton").addEventListener("click", () => {
-    stylesExtract("#screen", ["blur-lg", "disabled-screen"])
+    stylesExtract("#screen", ["blur-lg", "disabledScreen"])
     stylesInject("#menuList", ["hidden"])
     stylesInject("#titleBox", ["w-1/2"])
     stylesExtract("#titleBox", ["w-full"])
