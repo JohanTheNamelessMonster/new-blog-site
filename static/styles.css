@@ -13,6 +13,10 @@
     -webkit-background-clip: text;
 } */
 
+.disabled-screen {
+    pointer-events: none;
+}
+
 #backgroundVideo,
 #backgroundImage {
     height: 100%;
