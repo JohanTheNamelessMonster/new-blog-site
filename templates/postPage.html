@@ -6,32 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goutham Nair - Post</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
     <script id="MathJax-script" async src={{mJAXScript}}></script>
     <script src={{iconKit}} crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 content-center">
     {% import 'modules.jinja' as modules %}
     {{modules.navbar()}}
 
-    <div class="grid grid-rows-10 h-full w-screen">
-        <div class="border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-full">
-            <h1 class="text-3xl text-white font-serif font-semibold">{{data["Title"]}}</h1>
-        </div>
-        <div class="row-start-2 row-end-3 text-left mb-4 w-full">
-            <p class="text-xs text-white font-mono">{{data["createdAt"]}}</p><br>
-            <p class="text-xs text-white font-mono">{{"Characters: " + (data["Body"]|length)|string}}</p>
-        </div>
-        <div class="border-2 border-gray-100 text-left max-h-[350px] row-start-3 row-end-6 w-full overflow-y-auto">
-            {% for para in paragraphs %}
-            <p class="text-lg text-white font-serif">{{para}}</p><br><br>
-            {%- endfor %}
+    <video autoplay muted loop src="/static/abstractBackground.mp4" id="backgroundVideo"></video>
+    <div id="screen">
+        <div class="grid w-full">
+            <div class="border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-full">
+                <h1 class="text-3xl text-white font-serif font-semibold">{{data["Title"]}}</h1>
+            </div>
+            <div class="row-start-2 row-end-3 text-left mb-4 w-full">
+                <p class="text-xs text-white font-mono">{{data["createdAt"]}}</p><br>
+                <p class="text-xs text-white font-mono">{{"Characters: " + (data["Body"]|length)|string}}</p>
+            </div>
+            <div class="border-2 border-gray-100 text-left max-h-[350px] row-start-3 row-end-6 w-full overflow-y-auto">
+                {% for para in paragraphs %}
+                <p class="text-lg text-white font-serif">{{para}}</p><br><br>
+                {%- endfor %}
+            </div>
         </div>
     </div>
-
+    <div id="menuList">
+        {{modules.pagesMenu(values,urls)}}
+    </div>
 </body>
 <script src="/static/styles.js"></script>
+<script src="/static/index.js"></script>
 
 </html>
