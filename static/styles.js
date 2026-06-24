@@ -35,8 +35,6 @@ document.querySelector("#menuCollapseButton").addEventListener("click", () => {
 
 })
 
-// document.querySelector("#backgroundVideo").play()
-
 
 
 function getElementCount(target) {
@@ -88,3 +86,4 @@ stylesInject("#infoText", ["text-white", "text-lg", "font-semibold", "px-8", "mb
 stylesInject("#infoButton", ["bg-indigo-700/50", "rounded-xl", "ml-8", "justify-center", "lg:w-2/5", "cursor-pointer", "mt-8", "transition", "delay-150", "duration-750", "px-8"])
 stylesInject("#infoButton", ["bg-purple-700/50", "scale-110"], "hover:")
 stylesInject("#infoButton", ["w-1/2"], "sm:")
+stylesInject("#socialText", ["text-white", "text-lg", "font-semibold", "my-4", "ml-4"])

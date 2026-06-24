@@ -40,3 +40,20 @@
     </div>
 
 {%- endmacro %}
+
+{% macro socialBox(platform,icon,descriptor) %}
+
+    <div id="infoBox" class="grid w-1/2 mx-8 cursor-pointer {{platform}}">
+        <div class="flex items-center mt-2">
+            <div>
+                <i class="{{icon}} fa-2x w-3/10 ml-4"></i>
+            </div>
+            <div class="w-full">
+                <h1 id="infoTitle" class="text-center">{{platform}}</h1>
+            </div>
+        </div>
+        <div>
+            <p id="socialText">{{descriptor}}</p>
+        </div>
+    </div>
+{%- endmacro %}

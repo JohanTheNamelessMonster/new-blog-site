@@ -5,8 +5,6 @@ from jinja2 import Environment,FileSystemLoader,select_autoescape
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
-import timeit
-import json
 import datetime as dt
 from customModules.sort import sortJSON
 from bson.objectid import ObjectId
@@ -37,7 +35,7 @@ def main():
         timeStamp = post["createdAt"].split("T")
         dates.append(timeStamp)
 
-    return render_template('landingPage.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts,dates=dates,iconKit=os.getenv("ICON_KIT"))
+    return render_template('landingPage.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],posts=posts,dates=dates,iconKit=os.getenv("ICON_KIT"))
 
 @app.errorhandler(404)
 def restore(error):
@@ -50,7 +48,7 @@ def notesPage():
     posts = collection.find({"Page":"Notes"})
     posts = sortJSON(posts)
 
-    return render_template('landingPage.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],posts=posts,iconKit=os.getenv("ICON_KIT"))
+    return render_template('landingPage.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],posts=posts,iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/page/<pageNumber>")
 def showPostInFull(pageNumber):
@@ -60,9 +58,9 @@ def showPostInFull(pageNumber):
     if collection.count_documents({"_id" : ObjectId(pageNumber)}) > 0:
         res = collection.find_one({"_id":ObjectId(pageNumber)})
         if res["Page"] == "Notes":
-            return render_template("postPage.html",values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"),mJAXScript=MathJAXScript,iconKit=os.getenv("ICON_KIT"))
+            return render_template("postPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],data=res,paragraphs=res["Body"].split("|"),mJAXScript=MathJAXScript,iconKit=os.getenv("ICON_KIT"))
         else:
-            return render_template("postPage.html",values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],data=res,paragraphs=res["Body"].split("|"),iconKit=os.getenv("ICON_KIT"))
+            return render_template("postPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],data=res,paragraphs=res["Body"].split("|"),iconKit=os.getenv("ICON_KIT"))
     else:
         return "Nothing to see here"
 
@@ -110,9 +108,14 @@ def adminPage():
             print("Post denied due to invalid password")
             return "Invalid Password"
     else:
-        return render_template("adminPage.html",values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],iconKit=os.getenv("ICON_KIT"))
+        return render_template("adminPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/aboutMe")
 def infoPage():
     print("About me page was accessed")
-    return render_template('aboutMe.html',values=["About Me","Notes"],urls=[url_for('infoPage'),url_for("notesPage")],socials=["https://github.com/JohanTheNamelessMonster"],tools=[["https://tailwindcss.com/","Tailwind CSS"],["https://flask.palletsprojects.com/en/stable/","Flask"]],iconKit=os.getenv("ICON_KIT"))
+    return render_template('aboutMe.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+
+@app.route("/contactMe")
+def contactPage():
+    print("Contact me page accessed")
+    return render_template("contact.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
