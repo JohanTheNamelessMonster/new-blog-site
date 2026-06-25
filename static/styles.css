@@ -18,9 +18,8 @@
 }
 
 #backgroundVideo,
-#backgroundImage {
-    height: 100%;
-    width: 100%;
+#backgroundImage,
+#loadingPage {
     object-fit: cover;
 }
 

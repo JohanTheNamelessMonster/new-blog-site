@@ -13,6 +13,7 @@
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen overflow-x-hidden pb-8">
     {% import 'modules.jinja' as module %}
 
+    {{module.loadingPage()}}
     <img src="/static/moon.jpg" id="backgroundImage">
     <div id="screen">
         {{module.navbar()}} <br>

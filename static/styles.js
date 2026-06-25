@@ -35,15 +35,12 @@ document.querySelector("#menuCollapseButton").addEventListener("click", () => {
 
 })
 
+let loadingPageStyles = ["absolute", "top-0", "left-0", "w-screen", "max-h-screen", "z-20"]
+stylesInject("#loadingPage", loadingPageStyles)
+window.addEventListener("load", () => {
+    setTimeout(() => { stylesInject("#loadingPage", ["hidden"]) }, 2700)
+})
 
-
-function getElementCount(target) {
-    let total = 0;
-    document.querySelectorAll(target).forEach((t) => {
-        total += 1
-    });
-    return total;
-}
 
 let navBarStyles = ["sticky", "w-full", "h-[60px]", "flex", "fadeUp"];
 let titleBoxStyles = ["w-1/2", "content-center", "cursor-pointer"];

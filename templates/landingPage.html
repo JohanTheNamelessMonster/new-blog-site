@@ -10,11 +10,12 @@
     <script src={{iconKit}} crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen">
+<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-[100vh] w-[100vw]">
+    {% import 'modules.jinja' as module%}
 
+    {{module.loadingPage()}}
     <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo" type="video/mp4"></video>
     <div id="screen" class="h-screen max-w-screen overflow-y-auto overflow-x-hidden pb-8">
-        {% import 'modules.jinja' as module%}
         {{module.navbar()}}
 
         <div id="postArea" class="grid items-center justify-center w-screen">
