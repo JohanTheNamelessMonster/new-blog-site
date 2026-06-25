@@ -36,11 +36,17 @@ document.querySelector("#menuCollapseButton").addEventListener("click", () => {
 })
 
 let loadingPageStyles = ["absolute", "top-0", "left-0", "w-screen", "max-h-screen", "z-20"]
+
 stylesInject("#loadingPage", loadingPageStyles)
 window.addEventListener("load", () => {
-    setTimeout(() => { stylesInject("#loadingPage", ["hidden"]) }, 2700)
-})
+    setTimeout(() => {
+        stylesInject("#loadingPage", ["hidden"])
+        stylesInject("#screen", ["hidden"])
+        setTimeout(() => stylesExtract("#screen", ["hidden"]), 1000)
+    }, 3300)
 
+
+})
 
 let navBarStyles = ["sticky", "w-full", "h-[60px]", "flex", "fadeUp"];
 let titleBoxStyles = ["w-1/2", "content-center", "cursor-pointer"];
