@@ -41,3 +41,19 @@
         transform: translateY(0);
     }
 }
+
+li {
+    list-style-type: disc;
+}
+
+.educationList::marker {
+    color: blueviolet;
+}
+
+.workList::marker {
+    color: gold;
+}
+
+.leaderList::marker {
+    color: rgb(234, 19, 19);
+}

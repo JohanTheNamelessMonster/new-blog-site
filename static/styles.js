@@ -61,7 +61,7 @@ let postBoxHoverStyles = ["inset-shadow-purple-600", "inset-shadow-lg", "scale-1
 let postTitleStyles = ["text-purple-600", "text-center", "text-4xl", "font-[Serif]"]
 let nameStyle = ["text-7xl", "bg-linear-to-b", "from-gray-100", "to-gray-800", "bg-clip-text", "text-transparent", "fadeUp"]
 
-stylesInject("#screen", ["scrollRegion"])
+stylesInject("#screen", ["scrollRegion", "max-h-[100vh]", "overflow-y-auto", "pb-8"])
 stylesInject("#navigationBar", navBarStyles)
 stylesInject("#titleBox", titleBoxStyles)
 stylesInject("#menuButtonBox", menuBoxStyle)

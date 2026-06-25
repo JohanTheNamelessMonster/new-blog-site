@@ -10,11 +10,11 @@
     <title>GNair - About Me</title>
 </head>
 
-<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen overflow-x-hidden">
+<body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 h-screen overflow-x-hidden pb-8">
     {% import 'modules.jinja' as module %}
 
     <img src="/static/moon.jpg" id="backgroundImage">
-    <div id="screen" class="scrollRegion">
+    <div id="screen">
         {{module.navbar()}} <br>
         <div>
             <h1 id="name">Goutham</h1><br>
@@ -22,10 +22,53 @@
         </div> <br>
 
         <div id="infoRegion">
-            <div id="infoBox">
+            <div id="infoBox" class="cursor-default">
                 <h1 id="infoTitle">General Info</h1><br>
-                <p id="infoText">Hello traveller!! You have crawled far enough along the world wide web to end in
-                    the cold,dark,desolate and remote corner of my website.</p>
+                <p id="infoText">Hello Hello Hello!! Welcome to <a href="https://gnair.com"
+                        class="underline decoration-pink-500 decoration-double">gnair.com</a>, the personal website
+                    of Goutham Nair! If you
+                    chance upon any bugs or just something you dislike, let me know!! I will <em>NOT</em> contact
+                    strangers asking for money or with seemingly shady business offers either.</p> <br>
+                <h1 id="infoTitle">Education</h1> <br>
+                <ul>
+                    <li class="educationList">
+                        <p id="infoText">7 National 5 As and 1 National 5 B awarded by the SQA in the year 2024</p>
+                    </li>
+                    <li class="educationList">
+                        <p id="infoText">1 Advanced Higher A and 4 Higher As awarded by the SQA in the year 2025</p>
+                    </li>
+                    <li class="educationList">
+                        <p id="infoText">I have completed 3 Advanced Highers and 1 Higher, and hope to get all As this
+                            year</p>
+                    </li>
+                    <li class="educationList">
+                        <p id="infoText">I am going to start the first of five years of a MInf degree in university this
+                            September</p>
+                    </li>
+                </ul> <br>
+                <h1 id="infoTitle">Work</h1> <br>
+                <ul>
+                    <li class="workList">
+                        <p id="infoText">I have been working as a kitchen porter at Quintilanis Larkhall since March of
+                            2026</p>
+                    </li>
+                </ul> <br>
+                <h1 id="infoTitle">Leadership</h1> <br>
+                <ul>
+                    <li class="leaderList">
+                        <p id="infoText">I was a Junior Vice-House Captain for St Gabriel House at Holy Cross High
+                            School
+                            in fourth year</p>
+                    </li>
+                    <li class="leaderList">
+                        <p id="infoText">I was a Senior Prefect for St Gabriel House at Holy Cross High School in fifth
+                            year</p>
+                    </li>
+                    <li class="leaderList">
+                        <p id="infoText">I was the first House Captain for the newly formed St Carlo House at Holy Cross
+                            High School in sixth year</p>
+                    </li>
+                </ul>
                 <form action="/static/CV_Goutham_Nair.pdf">
                     <button id="infoButton">
                         <h1 id="infoTitle">View my CV</h1>
