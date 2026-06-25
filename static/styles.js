@@ -42,7 +42,7 @@ window.addEventListener("load", () => {
     setTimeout(() => {
         stylesInject("#loadingPage", ["hidden"])
         stylesInject("#screen", ["hidden"])
-        setTimeout(() => stylesExtract("#screen", ["hidden"]), 1000)
+        setTimeout(() => stylesExtract("#screen", ["hidden"]), 200)
     }, 3300)
 
 
