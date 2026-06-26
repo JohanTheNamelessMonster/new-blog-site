@@ -61,3 +61,15 @@
 {% macro loadingPage() %}
     <img src="/static/lightSpeed.gif" id="loadingPage">
 {%- endmacro %}
+
+{% macro projectCard(title,description) %}
+    <div class="flex flex-col shrink-0 snap-center h-[40vh] w-[30vw] bg-indigo-200/25 inset-shadow-sm inset-shadow-indigo-500 rounded-xl my-16">
+        <div class="h-1/2 bg-linear-to-r from-emerald-600/50 to-yellow-300/50 w-full rounded-t-xl">
+
+        </div>
+        <div class="h-1/2 w-full text-center rounded-b-xl">
+            <h1 id="infoTitle">{{title}}</h1> <br>
+            <p id="infoText">{{description}}</p>
+        </div>
+    </div>
+{%- endmacro %}

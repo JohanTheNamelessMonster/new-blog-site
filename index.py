@@ -119,3 +119,7 @@ def infoPage():
 def contactPage():
     print("Contact me page accessed")
     return render_template("contact.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+
+@app.route("/projects")
+def projectPage():
+    return render_template("projects.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))

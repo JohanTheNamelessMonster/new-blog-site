@@ -43,6 +43,23 @@
     }
 }
 
+.fadeRight {
+    animation: fadeInRight ease 3s;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 li {
     list-style-type: disc;
 }

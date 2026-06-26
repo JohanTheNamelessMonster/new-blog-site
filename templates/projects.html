@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G Nair - Projects</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src={{iconKit}} crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% import 'modules.jinja' as module %}
+    {{module.loadingPage()}}
+    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo" type="video/mp4"></video>
+    <div id="screen">
+        {{module.navbar()}} <br>
+        <div
+            class="flex snap-x snap-mandatory overflow-x-auto justify-center items-center gap-x-10 scrollbar-thumb-indigo-200/25 hover:scrollbar-thumb-indigo-200/25 fadeRight">
+            <div class="shrink-0 snap-center">
+                <div class="w-[60vw] h-[40vh]"></div>
+            </div>
+            {{module.projectCard("Project","Blah Blah Bleh")}}
+            {{module.projectCard("Project","Blah Blah Bleh")}}
+            {{module.projectCard("Project","Blah Blah Bleh")}}
+            {{module.projectCard("Project","Blah Blah Bleh")}}
+        </div>
+    </div>
+    <div id="menuList">
+        {{module.pagesMenu(values,urls)}}
+    </div>
+</body>
+
+<script src="/static/styles.js"></script>
+<script src="/static/index.js"></script>
+
+</html>
