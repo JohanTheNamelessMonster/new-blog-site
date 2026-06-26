@@ -15,7 +15,8 @@
     {% import 'modules.jinja' as module%}
 
     {{module.loadingPage()}}
-    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo"></video>
+    <video autoplay disablepictureinpicture playsinline muted loop src="/static/spaceVid.mp4"
+        id="backgroundVideo"></video>
     <div id="screen" class="h-screen max-w-screen overflow-y-auto overflow-x-hidden pb-8">
         {{module.navbar()}} <br>
         <h1 id="infoTitle" class="fadeUp">My Socials</h1> <br>

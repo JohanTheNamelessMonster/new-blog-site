@@ -15,7 +15,8 @@
     {% import 'modules.jinja' as modules %}
 
     {{modules.loadingPage()}}
-    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo"></video>
+    <video autoplay disablepictureinpicture playsinline muted loop src="/static/spaceVid.mp4"
+        id="backgroundVideo"></video>
     <div id="screen" class="fadeUp">
         {{modules.navbar()}}
         <div class="grid w-full border-t-4 border-lime-700 fadeRight">

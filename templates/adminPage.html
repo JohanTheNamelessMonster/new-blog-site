@@ -14,7 +14,8 @@
     {% import 'modules.jinja' as module %}
 
     {{module.loadingPage()}}
-    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo"></video>
+    <video autoplay disablepictureinpicture playsinline muted loop src="/static/spaceVid.mp4"
+        id="backgroundVideo"></video>
     <div>
         {{module.navbar()}}
         <div class="max-h-[550px] overflow-auto overflow-x-hidden">
