@@ -13,22 +13,26 @@
 
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950 content-center">
     {% import 'modules.jinja' as modules %}
-    {{modules.navbar()}}
 
     {{modules.loadingPage()}}
     <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo"></video>
     <div id="screen" class="fadeUp">
-        <div class="grid w-full">
-            <div class="border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-full">
-                <h1 class="text-3xl text-white font-serif font-semibold">{{data["Title"]}}</h1>
+        {{modules.navbar()}}
+        <div class="grid w-full border-t-4 border-lime-700 fadeRight">
+            <div class="text-center row-start-1 row-end-2 w-full">
+                <h1 class="text-5xl text-white font-serif font-semibold">{{data["Title"]}}</h1>
             </div>
             <div class="row-start-2 row-end-3 text-left mb-4 w-full">
-                <p class="text-xs text-white font-mono">{{data["createdAt"]}}</p><br>
-                <p class="text-xs text-white font-mono">{{"Characters: " + (data["Body"]|length)|string}}</p>
+                <p class="text-lg text-white font-mono underline decoration-pink-600/50 decoration-4">
+                    {{data["createdAt"]}}
+                </p><br>
+                <p class="text-lg text-white font-mono underline decoration-pink-600/50 decoration-4">{{"Characters: " +
+                    (data["Body"]|length)|string}}</p>
             </div>
-            <div class="border-2 border-gray-100 text-left max-h-[350px] row-start-3 row-end-6 w-full overflow-y-auto">
+            <div class="w-[80vw]">
                 {% for para in paragraphs %}
-                <p class="text-lg text-white font-serif">{{para}}</p><br><br>
+                <p class="text-2xl text-slate-600/75 underline decoration-indigo-600/25 font-serif">{{para}}</p>
+                <br><br>
                 {%- endfor %}
             </div>
         </div>

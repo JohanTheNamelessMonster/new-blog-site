@@ -24,6 +24,8 @@ app = Flask(__name__,template_folder='templates')
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+pageNames:str = ["About Me","Projects","Contact Me"]
+
 @app.route("/")
 def main():
     db = client[os.getenv("DB")]
@@ -34,21 +36,14 @@ def main():
     for post in posts:
         timeStamp = post["createdAt"].split("T")
         dates.append(timeStamp)
+    pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+    
 
-    return render_template('landingPage.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],posts=posts,dates=dates,iconKit=os.getenv("ICON_KIT"))
+    return render_template('landingPage.html',values=pageNames,urls=pageurls,posts=posts,dates=dates,iconKit=os.getenv("ICON_KIT"))
 
 @app.errorhandler(404)
-def restore(error):
+def lost404(error):
     return "<p>You are lost my guy... or gal. I'm too lazy to make a 404 page</p>"
-
-@app.route("/notes")
-def notesPage():
-    db = client[os.getenv("DB")]
-    collection = db[os.getenv("COLLECTION")]
-    posts = collection.find({"Page":"Notes"})
-    posts = sortJSON(posts)
-
-    return render_template('landingPage.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],posts=posts,iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/page/<pageNumber>")
 def showPostInFull(pageNumber):
@@ -57,10 +52,12 @@ def showPostInFull(pageNumber):
     collection = db[os.getenv("COLLECTION")]
     if collection.count_documents({"_id" : ObjectId(pageNumber)}) > 0:
         res = collection.find_one({"_id":ObjectId(pageNumber)})
+        pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+
         if res["Page"] == "Notes":
-            return render_template("postPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],data=res,paragraphs=res["Body"].split("|"),mJAXScript=MathJAXScript,iconKit=os.getenv("ICON_KIT"))
+            return render_template("postPage.html",values=pageNames,urls=pageurls,data=res,paragraphs=res["Body"].split("|"),mJAXScript=MathJAXScript,iconKit=os.getenv("ICON_KIT"))
         else:
-            return render_template("postPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],data=res,paragraphs=res["Body"].split("|"),iconKit=os.getenv("ICON_KIT"))
+            return render_template("postPage.html",values=pageNames,urls=pageurls,data=res,paragraphs=res["Body"].split("|"),iconKit=os.getenv("ICON_KIT"))
     else:
         return "Nothing to see here"
 
@@ -108,18 +105,26 @@ def adminPage():
             print("Post denied due to invalid password")
             return "Invalid Password"
     else:
-        return render_template("adminPage.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+        pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+        return render_template("adminPage.html",values=pageNames,urls=pageurls,iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/aboutMe")
 def infoPage():
     print("About me page was accessed")
-    return render_template('aboutMe.html',values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+    pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+    return render_template('aboutMe.html',values=pageNames,urls=pageurls,iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/contactMe")
 def contactPage():
     print("Contact me page accessed")
-    return render_template("contact.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+    pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+    return render_template("contact.html",values=pageNames,urls=pageurls,iconKit=os.getenv("ICON_KIT"))
 
 @app.route("/projects")
 def projectPage():
-    return render_template("projects.html",values=["About Me","Notes","Contact Me"],urls=[url_for('infoPage'),url_for("notesPage"),url_for("contactPage")],iconKit=os.getenv("ICON_KIT"))
+    db = client[os.getenv("DB")]
+    collection = db[os.getenv("COLLECTION")]
+    posts = collection.find({"Page":"Notes"})
+    posts = sortJSON(posts)
+    pageurls= [url_for('infoPage'),url_for("projectPage"),url_for("contactPage")]
+    return render_template('projects.html',values=pageNames,urls=pageurls,posts=posts,iconKit=os.getenv("ICON_KIT"))

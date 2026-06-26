@@ -55,7 +55,7 @@ document.querySelector("#submit").addEventListener("click", async (e) => {
     }
 
     data = {
-        title: document.querySelector("#title").value,
+        title: document.querySelector("#titleText").value,
         body: document.querySelector("#body").value,
         command: action,
         password: encrypt(document.querySelector("#password").value),

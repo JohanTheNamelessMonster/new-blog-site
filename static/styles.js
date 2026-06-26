@@ -50,7 +50,7 @@ window.addEventListener("load", () => {
 
 let navBarStyles = ["sticky", "w-full", "h-[60px]", "flex", "fadeUp"];
 let titleBoxStyles = ["w-1/2", "content-center", "cursor-pointer"];
-let titleStyles = ["text-center", "text-3xl", "font-extrabold", "text-transparent", "bg-linear-to-r", "from-violet-600", "to-red-700", "bg-clip-text"];
+let titleStyles = ["text-center", "text-3xl", "font-extrabold", "text-transparent", "bg-linear-to-r", "from-violet-600", "to-red-700", "bg-clip-text", "mb-4"];
 let pageLinkBoxStyles = ["grid", "grid-rows-4", "gap-4"];
 let menuBoxStyle = ["w-1/4", "h-full", "content-center"];
 let hamburgerButtonStyles = ["cursor-pointer", "stroke-gray-100"]
@@ -65,6 +65,7 @@ let postTitleStyles = ["text-purple-600", "text-center", "text-4xl", "font-[Seri
 let nameStyle = ["text-7xl", "bg-linear-to-b", "from-gray-100", "to-gray-800", "bg-clip-text", "text-transparent", "fadeUp"]
 
 stylesInject("#screen", ["scrollRegion", "max-h-[100vh]", "overflow-y-auto", "pb-8"])
+stylesInject("body", ["scrollRegion", "max-h-[100vh]", "overflow-y-hidden", "pb-8"])
 stylesInject("#navigationBar", navBarStyles)
 stylesInject("#titleBox", titleBoxStyles)
 stylesInject("#menuButtonBox", menuBoxStyle)

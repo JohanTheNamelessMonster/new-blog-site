@@ -7,71 +7,73 @@
     <title>G Nair Admin</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.0/dist/iconify-icon.min.js"></script>
     <script src={{iconKit}} crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-linear-to-r from-slate-700 via-slate-800 to-slate-950">
-    {% import 'modules.jinja' as modules %}
+    {% import 'modules.jinja' as module %}
 
+    {{module.loadingPage()}}
+    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo"></video>
     <div>
-        {{modules.navbar(values,urls)}}
-    </div>
+        {{module.navbar()}}
+        <div class="max-h-[550px] overflow-auto overflow-x-hidden">
+            <div class="grid grid-rows-12 content-center w-screen h-screen">
+                <div
+                    class="text-center border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-screen max-w-[1520px]">
+                    <input type="text" id="titleText"
+                        class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-center opacit-0"
+                        placeholder="Enter your title here..." />
+                </div>
+                <div class="border-2 border-gray-100 text-left row-start-3 row-end-6 w-screen">
+                    <textarea id="body"
+                        class="relative px-2 h-full w-full text-white font-mono bg-slate-600 max-w-[1520px]"
+                        placeholder="Speak what's on your mind..."></textarea>
+                </div>
+                <div class="text-left row-start-7 row-end-8 w-screen max-w-[1520px] max-h-[50px]">
+                    <input type="text" id="oid"
+                        class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-left"
+                        placeholder="Enter the post's object ID here..." />
+                </div>
+                <div class="text-left row-start-8 row-end-9 w-screen max-w-[1520px] max-h-[50px]">
+                    <input type="password" id="password"
+                        class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-left"
+                        placeholder="Enter your password here..." />
+                </div>
+                <div class="text-left row-start-9 row-end-10 left-0 content-center">
+                    <label for="create" class="text-white">Home Page</label>
+                    <input id="home" type="radio" name="pPage" value="Home"
+                        class="postPage w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
+                    <label for="update" class="text-white">Notes Page</label>
+                    <input id="notes" type="radio" name="pPage" value="Notes"
+                        class="postPage w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
+                </div>
+                <div class="text-left row-start-10 row-end-11 left-0 content-center">
+                    <label for="create" class="text-white">CREATE</label>
+                    <input id="create" type="radio" name="command" value="CREATE"
+                        class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
+                    <label for="update" class="text-white">UPDATE</label>
+                    <input id="update" type="radio" name="command" value="UPDATE"
+                        class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
+                    <label for="delete" class="text-white">DELETE</label>
+                    <input id="delete" type="radio" name="command" value="DELETE"
+                        class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
+                </div>
+                <div class="text-left row-start-11 row-end-12">
+                    <button id="submit" class="bg-slate-600 text-white rounded-xl w-[200px] h-[100px]">Submit</button>
+                </div>
+            </div>
 
-    <div class="max-h-[550px] overflow-auto overflow-x-hidden">
-        <div class="grid grid-rows-12 content-center w-screen h-screen">
-            <div
-                class="text-center border-b-4 border-dotted border-sky-500 text-center row-start-1 row-end-2 w-screen max-w-[1520px]">
-                <input type="text" id="title"
-                    class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-center opacit-0"
-                    placeholder="Enter your title here..." />
-            </div>
-            <div class="border-2 border-gray-100 text-left row-start-3 row-end-6 w-screen">
-                <textarea id="body" class="relative px-2 h-full w-full text-white font-mono bg-slate-600 max-w-[1520px]"
-                    placeholder="Speak what's on your mind..."></textarea>
-            </div>
-            <div class="text-left row-start-7 row-end-8 w-screen max-w-[1520px] max-h-[50px]">
-                <input type="text" id="oid"
-                    class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-left"
-                    placeholder="Enter the post's object ID here..." />
-            </div>
-            <div class="text-left row-start-8 row-end-9 w-screen max-w-[1520px] max-h-[50px]">
-                <input type="password" id="password"
-                    class="h-full relative text-white font-serif bg-slate-600 px-2 w-full text-left"
-                    placeholder="Enter your password here..." />
-            </div>
-            <div class="text-left row-start-9 row-end-10 left-0 content-center">
-                <label for="create" class="text-white">Home Page</label>
-                <input id="home" type="radio" name="pPage" value="Home"
-                    class="postPage w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
-                <label for="update" class="text-white">Notes Page</label>
-                <input id="notes" type="radio" name="pPage" value="Notes"
-                    class="postPage w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
-            </div>
-            <div class="text-left row-start-10 row-end-11 left-0 content-center">
-                <label for="create" class="text-white">CREATE</label>
-                <input id="create" type="radio" name="command" value="CREATE"
-                    class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
-                <label for="update" class="text-white">UPDATE</label>
-                <input id="update" type="radio" name="command" value="UPDATE"
-                    class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
-                <label for="delete" class="text-white">DELETE</label>
-                <input id="delete" type="radio" name="command" value="DELETE"
-                    class="command w-4 h-4 text-indigo-500 border-default-medium bg-gray-500 rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle focus:bg-violet-400 border border-default appearance-none">
-            </div>
-            <div class="text-left row-start-11 row-end-12">
-                <button id="submit" class="bg-slate-600 text-white rounded-xl w-[200px] h-[100px]">Submit</button>
-            </div>
         </div>
-
     </div>
 
-    <div>
-        {{modules.footer(socials,tools)}}
+    <div id="menuList">
+        {{module.pagesMenu(values,urls)}}
     </div>
 </body>
 
 <script src="/static/postMaker.js"></script>
+<script src="/static/styles.js"></script>
+<script src="/static/index.js"></script>
 
 </html>

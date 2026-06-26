@@ -16,15 +16,26 @@
     <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo" type="video/mp4"></video>
     <div id="screen">
         {{module.navbar()}} <br>
+        <h1 id="infoTitle">My Projects on Github</h1>
         <div
             class="flex snap-x snap-mandatory overflow-x-auto justify-center items-center gap-x-10 scrollbar-thumb-indigo-200/25 hover:scrollbar-thumb-indigo-200/25 fadeRight">
             <div class="shrink-0 snap-center">
                 <div class="w-[60vw] h-[40vh]"></div>
             </div>
-            {{module.projectCard("Project","Blah Blah Bleh")}}
-            {{module.projectCard("Project","Blah Blah Bleh")}}
-            {{module.projectCard("Project","Blah Blah Bleh")}}
-            {{module.projectCard("Project","Blah Blah Bleh")}}
+            {{module.projectCard("Project","Blah Blah Bleh","GithubCard","blogSite")}}
+            {{module.projectCard("Project","Blah Blah Bleh","GithubCard","blogSite")}}
+            {{module.projectCard("Project","Blah Blah Bleh","GithubCard","blogSite")}}
+            {{module.projectCard("Project","Blah Blah Bleh","GithubCard","blogSite")}}
+        </div> <br>
+        <h1 id="infoTitle">My Academic Notes</h1>
+        <div
+            class="flex snap-x snap-mandatory overflow-x-auto justify-center items-center gap-x-10 scrollbar-thumb-indigo-200/25 hover:scrollbar-thumb-indigo-200/25 fadeRight">
+            <div class="shrink-0 snap-center">
+                <div class="w-[60vw] h-[40vh]"></div>
+            </div>
+            {% for i in range(posts|length)%}
+            {{module.projectCard(posts[i]["Title"],posts[i]["Body"][0:15] + "...","NotesCard",posts[i]["_id"])}}
+            {%- endfor %}
         </div>
     </div>
     <div id="menuList">
@@ -34,5 +45,6 @@
 
 <script src="/static/styles.js"></script>
 <script src="/static/index.js"></script>
+<script src="/static/projectsPage.js"></script>
 
 </html>

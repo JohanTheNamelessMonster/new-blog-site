@@ -20,7 +20,7 @@
 
         <div id="postArea" class="grid items-center justify-center w-screen">
             {% for i in range(posts|length)%}
-            {{module.postBox(posts[i]["Title"],posts[i]["Body"],dates[i][0],dates[i][1],posts[i]["_id"])}}
+            {{module.postBox(posts[i]["Title"],posts[i]["Body"][0:15]+"...",dates[i][0],dates[i][1],posts[i]["_id"])}}
             {%- endfor %}
         </div>
     </div>
