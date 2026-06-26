@@ -13,7 +13,8 @@
 <body>
     {% import 'modules.jinja' as module %}
     {{module.loadingPage()}}
-    <video autoplay muted loop src="/static/spaceVid.mp4" id="backgroundVideo" type="video/mp4"></video>
+    <video autoplay disablepictureinpicture playsinline muted loop src="/static/spaceVid.mp4" id="backgroundVideo"
+        type="video/mp4"></video>
     <div id="screen">
         {{module.navbar()}} <br>
         <h1 id="infoTitle">My Projects on Github</h1>
