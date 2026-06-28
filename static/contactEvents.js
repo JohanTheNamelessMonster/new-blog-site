@@ -3,6 +3,7 @@ document.querySelectorAll("#infoBox").forEach((element) => {
         if (element.classList.contains("Github")) {
             location.replace("https://github.com/JohanTheNamelessMonster")
         } else if (element.classList.contains("Discord")) {
+	    alert("Discord usertag copied to clipboard!!")
             navigator.clipboard.writeText("therealshaqoatmeal")
         } else if (element.classList.contains("GMail")) {
             location.replace("mailto:gouthamnair23@gmail.com")
