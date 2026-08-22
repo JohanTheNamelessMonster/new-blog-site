@@ -35,6 +35,7 @@ const encrypt = (key) => {
 }
 
 document.querySelector("#submit").addEventListener("click", async (e) => {
+    console.log("Submit clicked")
     var action = ""
     document.querySelectorAll(".command").forEach((command) => {
         if (command.checked) {
@@ -49,38 +50,35 @@ document.querySelector("#submit").addEventListener("click", async (e) => {
         }
     })
 
-    if (postPage == "" || action == "" || document.querySelector("#title").value == "" || document.querySelector("#body").value == "" || document.querySelector("#password").value == "") {
+    if (postPage == "" || action == "" || document.querySelector("#title").value == "" || document.querySelector("#bodyText").value == "" || document.querySelector("#password").value == "") {
         alert("Invalid input as some field is missing")
         return 0
     }
 
     data = {
         title: document.querySelector("#titleText").value,
-        body: document.querySelector("#body").value,
+        body: document.querySelector("#bodyText").value,
         command: action,
         password: encrypt(document.querySelector("#password").value),
         oid: document.querySelector("#oid").value,
         page: postPage,
     }
 
-    const res = await fetch("/admin/secretPage", {
+    console.log(JSON.stringify({data}))
+
+    const res = await fetch("/admin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data }),
     }).catch((e) => {
         console.log(e)
-    })
-        .then(reply => {
+    }).then(reply => {
             if (reply.redirected) {
                 window.location = reply.url
             } else if (reply.text() == "Invalid Password") {
                 alert("Invalid Password")
             } else {
-                alert(reply.text())
+                console.log("There was a boo boo")
             }
         })
-
-
-
-
 })

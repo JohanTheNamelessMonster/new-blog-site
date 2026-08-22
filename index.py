@@ -61,12 +61,13 @@ def showPostInFull(pageNumber):
     else:
         return "Nothing to see here"
 
-@app.route("/admin/secretPage",methods=["POST","GET"])
+@app.route("/admin",methods=["POST","GET"])
 @cross_origin()
 def adminPage():
     if request.method == 'POST':
-        print("A new post has been requested")
+        app.logger.info("A new post has been requested")
         jsonBody = request.get_json()
+        app.logger.info(jsonBody)
         if jsonBody["data"]["password"] == os.getenv("HASHED_PASSWORD"):
             db = client[os.getenv("DB")]
             collection = db[os.getenv("COLLECTION")]

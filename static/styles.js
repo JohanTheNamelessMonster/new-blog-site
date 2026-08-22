@@ -63,6 +63,7 @@ let postBoxStyles = ["bg-indigo-200/25", "inset-shadow-sm", "inset-shadow-indigo
 let postBoxHoverStyles = ["inset-shadow-purple-600", "inset-shadow-lg", "scale-110"]
 let postTitleStyles = ["text-purple-600", "text-center", "text-4xl", "font-[Serif]"]
 let nameStyle = ["text-7xl", "bg-linear-to-b", "from-gray-100", "to-gray-800", "bg-clip-text", "text-transparent", "fadeUp"]
+let adminBox = ["bg-indigo-200/25", "inset-shadow-sm", "inset-shadow-indigo-500", "rounded-xl", "mt-8", "w-full","py-4", "pl-4"]
 
 stylesInject("#screen", ["scrollRegion", "max-h-[100vh]", "overflow-y-auto", "pb-8"])
 stylesInject("body", ["scrollRegion", "max-h-[100vh]", "overflow-y-hidden", "pb-8"])
@@ -91,3 +92,4 @@ stylesInject("#infoButton", ["bg-indigo-700/50", "rounded-xl", "ml-8", "justify-
 stylesInject("#infoButton", ["bg-purple-700/50", "scale-110"], "hover:")
 stylesInject("#infoButton", ["w-1/2"], "sm:")
 stylesInject("#socialText", ["text-white", "text-lg", "font-semibold", "my-4", "ml-4"])
+stylesInject("#adminBox",adminBox)
