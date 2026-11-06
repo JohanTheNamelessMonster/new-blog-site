@@ -7,6 +7,8 @@ document.querySelectorAll("#infoBox").forEach((element) => {
             navigator.clipboard.writeText("therealshaqoatmeal")
         } else if (element.classList.contains("GMail")) {
             location.replace("mailto:gouthamnair23@gmail.com")
+        }else if (element.classList.contains("LinkedIn")) {
+            location.replace("https://www.linkedin.com/in/goutham-nair-728558441?utm_source=share_via&utm_content=profile")
         }
     })
 })
